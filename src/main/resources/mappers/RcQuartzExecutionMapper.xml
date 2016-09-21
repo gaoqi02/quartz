@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gaoqi.rc.dao.RcQuartzExecutionMapper" >
+  <resultMap id="BaseResultMap" type="com.gaoqi.rc.model.RcQuartzExecution" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_id" property="jobId" jdbcType="INTEGER" />
+    <result column="schedule_id" property="scheduleId" jdbcType="INTEGER" />
+    <result column="fire_time" property="fireTime" jdbcType="TIMESTAMP" />
+    <result column="pre_fire_time" property="preFireTime" jdbcType="TIMESTAMP" />
+    <result column="next_fire_time" property="nextFireTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="exec_result" property="execResult" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, job_id, schedule_id, fire_time, pre_fire_time, next_fire_time, end_time, exec_result, 
+    remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gaoqi.rc.model.RcQuartzExecutionCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rc_quartz_execution
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rc_quartz_execution
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rc_quartz_execution
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gaoqi.rc.model.RcQuartzExecutionCriteria" >
+    delete from rc_quartz_execution
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gaoqi.rc.model.RcQuartzExecution" useGeneratedKeys="true" keyProperty="id">
+    insert into rc_quartz_execution (id, job_id, schedule_id, 
+      fire_time, pre_fire_time, next_fire_time, 
+      end_time, exec_result, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobId,jdbcType=INTEGER}, #{scheduleId,jdbcType=INTEGER}, 
+      #{fireTime,jdbcType=TIMESTAMP}, #{preFireTime,jdbcType=TIMESTAMP}, #{nextFireTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{execResult,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gaoqi.rc.model.RcQuartzExecution" >
+    insert into rc_quartz_execution
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="scheduleId != null" >
+        schedule_id,
+      </if>
+      <if test="fireTime != null" >
+        fire_time,
+      </if>
+      <if test="preFireTime != null" >
+        pre_fire_time,
+      </if>
+      <if test="nextFireTime != null" >
+        next_fire_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="execResult != null" >
+        exec_result,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleId != null" >
+        #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="fireTime != null" >
+        #{fireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preFireTime != null" >
+        #{preFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextFireTime != null" >
+        #{nextFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="execResult != null" >
+        #{execResult,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gaoqi.rc.model.RcQuartzExecutionCriteria" resultType="java.lang.Integer" >
+    select count(*) from rc_quartz_execution
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rc_quartz_execution
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobId != null" >
+        job_id = #{record.jobId,jdbcType=INTEGER},
+      </if>
+      <if test="record.scheduleId != null" >
+        schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fireTime != null" >
+        fire_time = #{record.fireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.preFireTime != null" >
+        pre_fire_time = #{record.preFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nextFireTime != null" >
+        next_fire_time = #{record.nextFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.execResult != null" >
+        exec_result = #{record.execResult,jdbcType=TINYINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rc_quartz_execution
+    set id = #{record.id,jdbcType=INTEGER},
+      job_id = #{record.jobId,jdbcType=INTEGER},
+      schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      fire_time = #{record.fireTime,jdbcType=TIMESTAMP},
+      pre_fire_time = #{record.preFireTime,jdbcType=TIMESTAMP},
+      next_fire_time = #{record.nextFireTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      exec_result = #{record.execResult,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gaoqi.rc.model.RcQuartzExecution" >
+    update rc_quartz_execution
+    <set >
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleId != null" >
+        schedule_id = #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="fireTime != null" >
+        fire_time = #{fireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preFireTime != null" >
+        pre_fire_time = #{preFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextFireTime != null" >
+        next_fire_time = #{nextFireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="execResult != null" >
+        exec_result = #{execResult,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gaoqi.rc.model.RcQuartzExecution" >
+    update rc_quartz_execution
+    set job_id = #{jobId,jdbcType=INTEGER},
+      schedule_id = #{scheduleId,jdbcType=INTEGER},
+      fire_time = #{fireTime,jdbcType=TIMESTAMP},
+      pre_fire_time = #{preFireTime,jdbcType=TIMESTAMP},
+      next_fire_time = #{nextFireTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      exec_result = #{execResult,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.gaoqi.rc.model.RcQuartzExecutionCriteria" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rc_quartz_execution
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <cache />
+</mapper>
