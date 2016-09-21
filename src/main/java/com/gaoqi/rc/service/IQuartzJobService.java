@@ -1,7 +1,7 @@
 package com.gaoqi.rc.service;
 
 import com.gaoqi.rc.domain.QuartzJobVo;
-import com.sohu.rc.model.LoginInfo;
+import com.gaoqi.rc.model.LoginInfo;
 import com.gaoqi.rc.model.RcQuartzJob;
 
 import java.util.List;
