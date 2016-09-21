@@ -20,9 +20,9 @@
 	</bean>
 
 	<!--       作业工厂      -->
-	<bean id="jobFactory" class="com.sohu.rc.core.factory.JobFactory"></bean>
+	<bean id="jobFactory" class="com.gaoqi.rc.core.factory.JobFactory"></bean>
 
 	<!--       监听器        -->
-	<bean id="jobTrackListener" class="com.sohu.rc.core.listener.JobTrackingListener" />
-	<bean id="triggerTrackListener" class="com.sohu.rc.core.listener.TriggerTrackingListener" />
+	<bean id="jobTrackListener" class="com.gaoqi.rc.core.listener.JobTrackingListener" />
+	<bean id="triggerTrackListener" class="com.gaoqi.rc.core.listener.TriggerTrackingListener" />
 </beans>

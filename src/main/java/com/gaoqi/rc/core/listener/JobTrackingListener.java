@@ -5,7 +5,7 @@ import com.gaoqi.rc.enums.JobExecutionResultEnum;
 import com.gaoqi.rc.model.RcQuartzExecution;
 import com.gaoqi.rc.utils.JobDetailUtil;
 import com.gaoqi.rc.domain.QuartzJobVo;
-import com.sohu.rc.util.JsonParser;
+import com.gaoqi.rc.utils.JsonParser;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobListener;

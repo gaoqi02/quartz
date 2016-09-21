@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <name>bigdata-quartz</name>
+    <name>quartz</name>
     <groupId>com.gaoqi</groupId>
     <url>http://maven.apache.org</url>
     <artifactId>bigdata-quartz</artifactId>
@@ -16,8 +16,7 @@
         <mybatis.version>3.2.5</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
         <slf4j.version>1.7.16</slf4j.version>
-        <dubbo.version>2.5.3</dubbo.version>
-        <mysql.version>5.1.38</mysql.version>
+       <mysql.version>5.1.38</mysql.version>
         <jackson.version>2.3.0</jackson.version>
         <logback.version>1.1.5</logback.version>
         <redis.version>2.6.0</redis.version>
@@ -183,6 +182,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.vidageek</groupId>
+            <artifactId>mirror</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -277,6 +285,24 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/dev</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <finalName>quartz</finalName>
         <plugins>
