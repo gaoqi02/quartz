@@ -1,10 +1,13 @@
 # quartz
 
-quartz 2.1+  +  spring  的组合
-在其中主要代码位于core和utils中的TriggerUtils等
+quartz 2.1 和 spring xml配置文件结合
+这是一套quartz的整体框架，将trigger存储于Quartz的内存，同时在本地数据库中还会存储trigger的信息，用于用户修改。
+这个框架可以用于公司每日大致的定时任务。
+基本的业务逻辑都在service中。Controller可以根据service自己定义相关信息。
 
-listener定义了任务触发的监听器。用于判断任务是否需要执行，以及执行过程中的日志
-job  BaseJob  可串行job 用于getSpringBean 反射执行执行文件
-     SerialJob 非可串行job 
-trigger  目前使用SimpleTrigger  用于定义某个时间开始执行  循环次数 循环间隔 结束时间等
-也定义了crontrigger
+用户可以自定义任务的类型，为一个RcQuartzJob，以及该任务对应的相关触发器 RcQuartzTrigger
+
+每个任务在执行时会触发trigger和job的相关listener，用于记录任务的执行情况RcQuartzExecution.
+
+任务的执行在BaseJob和SerialJob，调用spring的反射进行处理。如果quartz和spring分开则需要调用dubbo接口或者http请求。
+
