@@ -7,20 +7,7 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <context:property-placeholder location="classpath*:*.properties" />
-    <!--<bean class="com.sohu.rc.zookeeper.ZooKeeperPropertyPlaceholderConfigurer">
-        &lt;!&ndash;    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> &ndash;&gt;
-        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
-        <property name="ignoreResourceNotFound" value="true" />
-        <property name="locations">
-            <list>
-                <value>classpath:application.properties</value>
-                <value>classpath:hbase.properties</value>
-                <value>classpath:redis.properties</value>
-                <value>classpath:config.properties</value>
-                <value>classpath:mail.properties</value>
-            </list>
-        </property>
-    </bean>-->
+
     <util:properties id="config" location="classpath:config.properties" />
     <!-- xml配置文件 -->
     <bean id="propertyConfigurer"
